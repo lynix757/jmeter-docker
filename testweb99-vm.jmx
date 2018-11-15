@@ -12,14 +12,34 @@
       <stringProp name="TestPlan.user_define_classpath"></stringProp>
     </TestPlan>
     <hashTree>
+      <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+        <collectionProp name="Arguments.arguments">
+          <elementProp name="testname" elementType="Argument">
+            <stringProp name="Argument.name">testname</stringProp>
+            <stringProp name="Argument.value">local-web100</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="users" elementType="Argument">
+            <stringProp name="Argument.name">users</stringProp>
+            <stringProp name="Argument.value">100</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="rampup" elementType="Argument">
+            <stringProp name="Argument.name">rampup</stringProp>
+            <stringProp name="Argument.value">50</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+        </collectionProp>
+      </Arguments>
+      <hashTree/>
       <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Thread Group" enabled="true">
         <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
         <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
           <boolProp name="LoopController.continue_forever">false</boolProp>
           <intProp name="LoopController.loops">-1</intProp>
         </elementProp>
-        <stringProp name="ThreadGroup.num_threads">50</stringProp>
-        <stringProp name="ThreadGroup.ramp_time">0</stringProp>
+        <stringProp name="ThreadGroup.num_threads">${users}</stringProp>
+        <stringProp name="ThreadGroup.ramp_time">${rampup}</stringProp>
         <boolProp name="ThreadGroup.scheduler">false</boolProp>
         <stringProp name="ThreadGroup.duration"></stringProp>
         <stringProp name="ThreadGroup.delay"></stringProp>
@@ -29,7 +49,7 @@
           <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
             <collectionProp name="Arguments.arguments"/>
           </elementProp>
-          <stringProp name="HTTPSampler.domain">192.168.45.135</stringProp>
+          <stringProp name="HTTPSampler.domain">192.168.45.136</stringProp>
           <stringProp name="HTTPSampler.port">100</stringProp>
           <stringProp name="HTTPSampler.protocol"></stringProp>
           <stringProp name="HTTPSampler.contentEncoding"></stringProp>
@@ -90,12 +110,12 @@
               </elementProp>
               <elementProp name="influxdbUrl" elementType="Argument">
                 <stringProp name="Argument.name">influxdbUrl</stringProp>
-                <stringProp name="Argument.value">http://192.168.45.135:8086/write?db=blazedemo_performance</stringProp>
+                <stringProp name="Argument.value">http://192.168.10.46:8086/write?db=blazedemo_performance</stringProp>
                 <stringProp name="Argument.metadata">=</stringProp>
               </elementProp>
               <elementProp name="application" elementType="Argument">
                 <stringProp name="Argument.name">application</stringProp>
-                <stringProp name="Argument.value">TestJmeter1</stringProp>
+                <stringProp name="Argument.value">${testname}-T${users}-R${rampup}</stringProp>
                 <stringProp name="Argument.metadata">=</stringProp>
               </elementProp>
               <elementProp name="measurement" elementType="Argument">
